@@ -1,0 +1,8 @@
+/build
+/dist
+/nbproject
+/test
+build.xml
+manifiest.mf
+
+manifest.mf
