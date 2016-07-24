@@ -1,8 +1,16 @@
-package Utils;
+/**
+ *
+ * @author Bishops
+ * Trabaja en la creacion de archivos.
+ */
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileAdmin 
@@ -19,14 +27,14 @@ public class FileAdmin
         return ficheros;
     }
         
-    public static boolean FilesCopy(File[] ArrayFiles, String Destino )
+    public static boolean FilesCopy(File[] ArrayFiles, String Destiny )
     {
         try {
             for (int i = 0; i < ArrayFiles.length; i++) 
             {     
                 String FileName = ArrayFiles[i].toPath().getFileName().toString();
 
-                String Destino2 = Destino + "\\" + FileName;
+                String Destino2 = Destiny + "\\" + FileName;
 
                 File inFile = new File(ArrayFiles[i].toString());
                 File outFile = new File(Destino2);
@@ -76,5 +84,67 @@ public class FileAdmin
           Logger.LogsWriter(Logger.LogsType.ERROR, e.toString());
           return false;
       }
+    }
+    
+    public static void FileReader(String PathFile) 
+    {
+      try 
+      {
+        String LineString;
+        FileReader fr = new FileReader(PathFile);
+        BufferedReader br = new BufferedReader(fr);
+               
+        while((LineString = br.readLine())!=null) 
+        {          
+          System.out.println(LineString);                     
+                        
+        }                      
+        br.close();
+        
+      }catch(Exception e)
+      {
+          Logger.LogsWriter(Logger.LogsType.ERROR, e.toString());
+      }   
+      
+    }
+    
+    public static void FileWriter(String PathFile, String FileName, boolean Condition, String message) 
+    {
+      try 
+      {
+                
+        /*
+        * se verifica existencia de la ruta y si no existe se crea 
+        *  
+        */
+          
+        if(!FileAdmin.ExistPath(PathFile))
+        {
+           if(!FileAdmin.CreteDirectory(PathFile))
+           {
+               throw new Exception("Error al crear directorio");
+           }
+        }
+        
+        /*
+        * Se crea el archivo especificado en el path declarado, 
+        * si el archivo existe se abre y adiciona el texto (condicion true)
+        * si el archivo no existe se crea en el path especificado (condicion false)
+        */
+                
+        String PathFinal = PathFile +"\\"+FileName;
+        FileWriter fw = new FileWriter(PathFinal, Condition);
+        BufferedWriter bw = new BufferedWriter(fw);
+        
+            System.out.println(PathFinal);
+            bw.newLine();
+            bw.append(message);
+            bw.close(); 
+                              
+      }catch(Exception e)
+      {
+          Logger.LogsWriter(Logger.LogsType.ERROR, e.toString());
+      }   
+      
     }
 }
