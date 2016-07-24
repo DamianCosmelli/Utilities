@@ -1,5 +1,8 @@
-package Utils;
-
+/**
+ *
+ * @author Bishops
+ * Crea archivos logs, tanto para error como para actividades realizadas
+ */
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -52,7 +55,7 @@ public class Logger
       
     }   
    
-     public static void LogsWriter(LogsType ClassLog, String mensaje) 
+     public static void LogsWriter(LogsType ClassLog, String message) 
     {
       try 
       {
@@ -76,15 +79,15 @@ public class Logger
         
         if(ClassLog == LogsType.ACTIVITY)
         {
-             System.out.println(PathLog);
+            System.out.println(PathLog);
             fb.newLine();
-            fb.append("[ ACTIVIDAD ] - "+ LogsDateTimeFormat() +" - "+ mensaje);
+            fb.append("[ ACTIVIDAD ] - "+ LogsDateTimeFormat() +" - "+ message);
             fb.close(); 
             
         } else if(ClassLog == LogsType.ERROR)
         {
             fb.newLine();
-            fb.append("[ ERROR ] - "+ LogsDateTimeFormat() +" - "+ mensaje);
+            fb.append("[ ERROR ] - "+ LogsDateTimeFormat() +" - "+ message);
             fb.close(); 
         }
                    
