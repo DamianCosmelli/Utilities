@@ -1,8 +1,7 @@
-package Utils;
-
 /**
  *
  * @author Bishops
+ * Clase abstracta para la conexion de Bases de Datos MariaDB.
  */
 public abstract class DBConnector 
 {
