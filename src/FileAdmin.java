@@ -114,8 +114,7 @@ public class FileAdmin
       {
                 
         /*
-        * se verifica existencia de la ruta y si no existe se crea 
-        *  
+        * se verifica existencia de la ruta y si no existe se crea
         */
           
         if(!FileAdmin.ExistPath(PathFile))

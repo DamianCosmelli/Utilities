@@ -21,8 +21,4 @@ public abstract class DBConnector
     {
         return true;
     }
-    
-    
-    
-    
 }
