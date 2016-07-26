@@ -58,7 +58,7 @@ public class FileAdmin
             return true;
 } catch(IOException e) 
 {
-    Logger.LogsWriter(Logger.LogsType.ERROR, e.toString());
+    Loggers.LogsWriter(Loggers.LogsType.ERROR, e.toString());
     return false;
 }        
     }
@@ -83,7 +83,7 @@ public class FileAdmin
             return true;
       } catch (Exception e)
       {
-          Logger.LogsWriter(Logger.LogsType.ERROR, e.toString());
+          Loggers.LogsWriter(Loggers.LogsType.ERROR, e.toString());
           return false;
       }
     }
@@ -105,7 +105,7 @@ public class FileAdmin
         
       }catch(Exception e)
       {
-          Logger.LogsWriter(Logger.LogsType.ERROR, e.toString());
+          Loggers.LogsWriter(Loggers.LogsType.ERROR, e.toString());
       }   
       
     }
@@ -144,7 +144,7 @@ public class FileAdmin
                               
       }catch(Exception e)
       {
-          Logger.LogsWriter(Logger.LogsType.ERROR, e.toString());
+          Loggers.LogsWriter(Loggers.LogsType.ERROR, e.toString());
       }   
       
     }

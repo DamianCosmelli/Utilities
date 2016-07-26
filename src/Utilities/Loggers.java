@@ -13,7 +13,7 @@ import java.util.*;
 import java.text.SimpleDateFormat;
 
 
-public class Logger 
+public class Loggers 
 {        
    public enum LogsType 
    {
