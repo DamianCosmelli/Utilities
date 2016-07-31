@@ -14,6 +14,9 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class FileAdmin 
 {   
@@ -148,4 +151,12 @@ public class FileAdmin
       }   
       
     }
+    public static String CreateFileName(String Name,String Extension)
+    {
+       SimpleDateFormat formateador = new SimpleDateFormat("yyMMdd_", new Locale("es_ES"));
+       Date fechaDate = new Date();
+       String fecha = formateador.format(fechaDate);
+
+       return fecha+Name+"."+Extension;
+    } 
 }
