@@ -9,7 +9,7 @@ public class ReaderConfig
 {
     private Properties Config;
     
-    public ReaderConfig(String FileConfig)
+    public ReaderConfig(String FileConfigPath)
     {
         try 
         {
@@ -17,23 +17,15 @@ public class ReaderConfig
          Config = new Properties();
 
          /**Cargamos el archivo desde la ruta especificada*/
-         Config.load(new FileInputStream(FileAdmin.ActualDrirectory()+"\\src\\"+FileConfig));
+         Config.load(new FileInputStream(FileConfigPath));
         } catch (Exception e)
         {
             Loggers.LogsWriter(Loggers.LogsType.ERROR, e.toString());
         }        
     }
-    
-    public String getMethodo() 
-    {                
-        return Config.getProperty("methodo");
-    }
-    
-    public String getQuery() 
-    {                
-        return Config.getProperty("query");
-    }
-
-
-       
+    // devuelve la propiedad seteada en el archivo ".properties"
+    public String getSpecificProperties(String properties)
+    {
+        return Config.getProperty(properties);
+    }      
 }
