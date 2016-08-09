@@ -17,7 +17,7 @@ public class ReaderConfig
          Config = new Properties();
 
          /**Cargamos el archivo desde la ruta especificada*/
-         Config.load(new FileInputStream(FileConfigPath));
+         Config.load(new FileInputStream(SOPath.IsSOLinux(FileConfigPath)));
         } catch (Exception e)
         {
             Loggers.LogsWriter(Loggers.LogsType.ERROR, e.toString());

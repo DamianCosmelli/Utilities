@@ -27,7 +27,7 @@ public class FileAdmin
     
     public static File[] FileLists(String Path)
     {   
-        File files = new File(Path);
+        File files = new File(SOPath.IsSOLinux(Path));
         File[] ficheros = files.listFiles();
         return ficheros;
     }
@@ -40,8 +40,9 @@ public class FileAdmin
                 String FileName = ArrayFiles[i].toPath().getFileName().toString();
 
                 String Destino2 = Destiny + "\\" + FileName;
+                Destino2 = SOPath.IsSOLinux(Destino2);
 
-                File inFile = new File(ArrayFiles[i].toString());
+                File inFile = new File(SOPath.IsSOLinux(ArrayFiles[i].toString()));
                 File outFile = new File(Destino2);
 
                 FileInputStream in = new FileInputStream(inFile);
@@ -68,7 +69,7 @@ public class FileAdmin
     
     public static boolean ExistPath(String PathVerify)
     {
-        File fichero = new File(PathVerify);
+        File fichero = new File(SOPath.IsSOLinux(PathVerify));
         if (fichero.exists())
         {
             return true;
@@ -81,7 +82,7 @@ public class FileAdmin
     {
       try
       {
-            File fichero = new File(PathCreate);
+            File fichero = new File(SOPath.IsSOLinux(PathCreate));
             fichero.mkdirs();
             return true;
       } catch (Exception e)
@@ -96,7 +97,7 @@ public class FileAdmin
       try 
       {
         String LineString;
-        FileReader fr = new FileReader(PathFile);
+        FileReader fr = new FileReader(SOPath.IsSOLinux(PathFile));
         BufferedReader br = new BufferedReader(fr);
                
         while((LineString = br.readLine())!=null) 
@@ -120,6 +121,7 @@ public class FileAdmin
                 
         /*
         * se verifica existencia de la ruta y si no existe se crea
+        * Tambien reescribe el path si el sistema es linux
         */
           
         if(!FileAdmin.ExistPath(PathFile))
@@ -136,11 +138,14 @@ public class FileAdmin
         * si el archivo no existe se crea en el path especificado (condicion false)
         */
                 
-        String PathFinal = PathFile +"\\"+FileName;
+        String PathFinal = PathFile+FileName;
+        // reescribe el path si el sistema es linux
+        PathFinal = SOPath.IsSOLinux(PathFinal);
+        
         FileWriter fw = new FileWriter(PathFinal, Condition);
         BufferedWriter bw = new BufferedWriter(fw);
         
-            System.out.println(PathFinal);
+            //System.out.println(PathFinal);
             bw.newLine();
             bw.append(message);
             bw.close(); 

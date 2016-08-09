@@ -26,7 +26,7 @@ public class Loggers
       try 
       {
         String cadena;
-        FileReader f = new FileReader(PathLog);
+        FileReader f = new FileReader(SOPath.IsSOLinux(PathLog));
         BufferedReader b = new BufferedReader(f);
         int inicial = 0; //linea inicial 
         int cont = 0;     
@@ -36,7 +36,7 @@ public class Loggers
         
         String lineas[] = new String[cant];
                 
-        FileReader g = new FileReader(PathLog);
+        FileReader g = new FileReader(SOPath.IsSOLinux(PathLog));
         BufferedReader c = new BufferedReader(g);
                
         while((cadena = c.readLine())!=null) 
@@ -63,6 +63,7 @@ public class Loggers
       {
         // se establece la ruta de almacenamiento de Logs
         String PathLog = FileAdmin.ActualDrirectory()+"\\Logs";
+        PathLog = SOPath.IsSOLinux(PathLog);
         
         //se verifica existescia de la ruta y si no existe se crea
         if(!FileAdmin.ExistPath(PathLog))
@@ -74,7 +75,7 @@ public class Loggers
         }
         
         // Se establece el nombre del archivo del log
-        PathLog =PathLog+"\\"+LogsFileName();
+        PathLog = SOPath.IsSOLinux(PathLog+"\\"+LogsFileName());
         
         FileWriter fw = new FileWriter(PathLog, true);
         BufferedWriter fb = new BufferedWriter(fw);
