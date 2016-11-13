@@ -102,31 +102,34 @@ public abstract class DBConnect
         }
     }
     
-    // Muestra resultado de la busqueda de los campos establecidos
+    // Devuelve el string de resultado resultado de la busqueda de los campos establecidos
     
-    public void ViewResult(String[] fields) throws SQLException
+    public String StringResult(String[] fields) throws SQLException
     {
         int NumFields = fields.length;
+        String value = "";
         
         while (this.getRegister().next()) 
-        {
-            String value = "";
+        {          
             if (NumFields < 2)
             {
-                System.out.println("Palabra: " + this.getRegister().getString(fields[0]));
+                value += this.getRegister().getString(fields[0]);
             } 
             else
             {
                 for (int i = 0; i < fields.length; i++) 
                 {
                     value = value +" "+ this.getRegister().getString(fields[i]);
-                }
-                System.out.println("Palabra: "+value);              
-            
+                }             
             }
-            
+            value += "\n";
         }
+        return value;
     }
     
-   
+    // muestra por pantalla los resultados obtenidos por la consulta
+    public void ViewResult(String[] fields) throws SQLException
+    {
+        System.out.println(this.StringResult(fields));
+    }
 }
