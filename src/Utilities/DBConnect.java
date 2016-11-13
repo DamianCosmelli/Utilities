@@ -122,7 +122,7 @@ public abstract class DBConnect
                     value = value +" "+ this.getRegister().getString(fields[i]);
                 }             
             }
-            value += "\n";
+            value +=" |"+"\n";
         }
         return value;
     }
@@ -131,5 +131,23 @@ public abstract class DBConnect
     public void ViewResult(String[] fields) throws SQLException
     {
         System.out.println(this.StringResult(fields));
+    }
+    
+    //crea un archivo txt con los resultados obtenidos de la consulta realizada
+    public void CreateFileResult (String path ,String result, String headerfile, String footerfile)
+    {
+        String file = FileAdmin.CreateFileName("Dictionary", "txt");
+        path = FileAdmin.ActualDrirectory()+"\\"+path+"\\";             
+        String filepath = path+"\\"+file;
+    
+        if(FileAdmin.ExistPath(filepath))
+        {
+            FileAdmin.DeleteFile(filepath);
+        }
+        
+        //armado del diccionario
+        FileAdmin.FileWriter(path, file, true, headerfile);
+        FileAdmin.FileWriter(path, file, true, result);
+        FileAdmin.FileWriter(path, file, true, footerfile);   
     }
 }
