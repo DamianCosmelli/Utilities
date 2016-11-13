@@ -67,6 +67,7 @@ public class FileAdmin
 }        
     }
     
+    // Verifica la existencia de un archivo. Devuelve true si este existe. 
     public static boolean ExistPath(String PathVerify)
     {
         File fichero = new File(SOPath.IsSOLinux(PathVerify));
@@ -156,6 +157,8 @@ public class FileAdmin
       }   
       
     }
+    
+    //crea un filename iniciado con la fecha actual yyMMdd_name
     public static String CreateFileName(String Name,String Extension)
     {
        SimpleDateFormat formateador = new SimpleDateFormat("yyMMdd_", new Locale("es_ES"));
@@ -164,4 +167,12 @@ public class FileAdmin
 
        return fecha+Name+"."+Extension;
     } 
+    
+    //elimina el archivo pasado por parametro
+    public static boolean DeleteFile(String filepath)
+    {
+        File root = new File( filepath );
+        return root.delete();
+       
+    }
 }
