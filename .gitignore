@@ -3,4 +3,4 @@
 /test
 /log*
 build.xml
-manifiest.mf
+*.mf
